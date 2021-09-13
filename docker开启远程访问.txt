@@ -1,0 +1,9 @@
+vi /lib/systemd/system/docker.service
+
+找到ExecStart并修改
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
+
+
+systemctl daemon-reload
+service docker restart
+curl http://localhost:2375/version

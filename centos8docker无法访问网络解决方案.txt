@@ -1,0 +1,7 @@
+防火墙放行IP地址转发
+
+默认情况下firewalld会禁止转发流量，可以执行firewall-cmd --query-masquerade查看状态，应该是no
+
+请执行下面的命令开启转发
+firewall-cmd --add-masquerade --permanent 		永久开启IP地址转发
+firewall-cmd --reload 				重载防火墙规则，使之生效

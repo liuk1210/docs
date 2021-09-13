@@ -1,0 +1,3 @@
+Linux查看文档目录结构
+tree	tree -f > tree.txt	tree -d
+

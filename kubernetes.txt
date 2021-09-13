@@ -1,0 +1,103 @@
+#修改ip地址配置
+sed -i "s/BOOTPROTO=dhcp/BOOTPROTO=static/g" /etc/sysconfig/network-scripts/ifcfg-ens33
+sed -i "s/ONBOOT=no/ONBOOT=yes/g" /etc/sysconfig/network-scripts/ifcfg-ens33
+echo 'IPADDR=192.168.133.188'>>/etc/sysconfig/network-scripts/ifcfg-ens33
+echo 'NETMASK=255.255.255.0'>>/etc/sysconfig/network-scripts/ifcfg-ens33
+echo 'GATEWAY=192.168.133.2'>>/etc/sysconfig/network-scripts/ifcfg-ens33
+#修改hostname
+hostnamectl set-hostname kubernetes
+echo '127.0.0.1 kubernetes'>>/etc/hosts
+#DNS服务地址配置
+cat <<EOF > /etc/resolv.conf
+nameserver 114.114.114.114
+EOF
+#重启网络服务
+service network restart
+
+
+
+#系统更新
+yum -y update
+
+#安装工具
+yum install -y net-tools
+yum install -y yum-utils
+
+#add repo
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+#安装docker
+yum install -y docker-ce docker-ce-cli containerd.io
+
+#启动docker并设置为开机启动
+systemctl enable --now docker
+
+# 关闭防火墙
+systemctl disable firewalld --now
+
+# 将 SELinux 设置为 permissive 模式（相当于将其禁用）
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+# 加载内核模块
+modprobe br_netfilter
+
+# 修改内核参数
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+
+# k8s repo
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+
+# update cache
+yum clean all
+yum makecache
+yum repolist
+
+#关闭虚拟内存
+swapoff -a
+echo "vm.swappiness = 0">> /etc/sysctl.conf
+sed -i "s/\/dev\/mapper\/centos-swap swap/#\/dev\/mapper\/centos-swap swap/" /etc/fstab
+
+# 安装kubeadm、kubelet和kubectl，此处以1.19.3版本为例
+yum install -y kubelet-1.19.3 kubeadm-1.19.3 kubectl-1.19.3 --disableexcludes=kubernetes
+
+# 启动k8s
+systemctl enable --now kubelet
+
+#查看当前版本镜像列表
+kubeadm config images list
+
+#将已下载的k8s镜像导入到系统中
+docker load -i images/kube-apiserver-v1.19.3.tar
+docker load -i images/kube-controller-manager-v1.19.3.tar
+docker load -i images/kube-scheduler-v1.19.3.tar
+docker load -i images/kube-proxy-v1.19.3.tar
+docker load -i images/pause-3.2.tar
+docker load -i images/etcd-3.4.13-0.tar
+docker load -i images/coredns-1.7.0.tar
+
+#初始化k8s-master节点
+kubeadm init  --kubernetes-version=v1.19.3 \
+--pod-network-cidr=10.244.0.0/16 \
+--apiserver-advertise-address=192.168.133.188 \
+--service-cidr=10.96.0.0/12
+
+#wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+#导入flannel所需镜像
+docker load -i images/flannel-v0.13.0.tar
+kubectl apply -f kube-flannel.yml
+
+kubectl get nodes -o wide

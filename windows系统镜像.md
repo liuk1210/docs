@@ -1,17 +1,17 @@
 ### Windows XP
-#### Windows XP Professional with Service Pack 3 (x86) - CD (Chinese-Simplified)
-文件： zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso
-大小： 601.04MB
-SHA1： 69DBF131116760932DCF132ADE111D6B45778098
+#### Windows XP Professional with Service Pack 3 (x86) - CD (Chinese-Simplified)  
+文件： zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso  
+大小： 601.04MB  
+SHA1： 69DBF131116760932DCF132ADE111D6B45778098  
 ~~~
 ed2k://|file|zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso|630239232|CD0900AFA058ACB6345761969CBCBFF4|/
 ~~~
 
-### Windows 7
-#### Windows 7 Ultimate with Service Pack 1 (x64) - DVD (Chinese-Simplified)
-文件：cn_windows_7_ultimate_with_sp1_x64_dvd_u_677408.iso
-大小：3.19GB
-SHA1：2CE0B2DB34D76ED3F697CE148CB7594432405E23
+### Windows 7  
+#### Windows 7 Ultimate with Service Pack 1 (x64) - DVD (Chinese-Simplified)  
+文件：cn_windows_7_ultimate_with_sp1_x64_dvd_u_677408.iso  
+大小：3.19GB  
+SHA1：2CE0B2DB34D76ED3F697CE148CB7594432405E23  
 ~~~
 ed2k://|file|cn_windows_7_ultimate_with_sp1_x64_dvd_u_677408.iso|3420557312|B58548681854236C7939003B583A8078|/
 ~~~
@@ -55,6 +55,15 @@ SHA1：7CA3C339DF39C5874742D3B231B1EB963F63BDA4
 SHA256：13A4A87CEA23FDDB222F0A5AC041B051C355F0A5E830FA7F560F0E3CBDDB9903
 ```
 ed2k://|file|zh-cn_windows_server_2022_updated_sep_2024_x64_dvd_cab4e960.iso|6155229184|3B389D2652259B8BA29E4736E701616A|/
+```
+#### Windows Server 2025 (x64) - DVD (Chinese-Simplified)
+文件：zh-cn_windows_server_2025_x64_dvd_1d93dd12.iso  
+大小：5.79GB  
+MD5：C2F223B785563436080762C895C4E1CB  
+SHA1：18318853F18176FD131C6E1DFDCC67B519093F07  
+SHA256：D73268825763B96F74A627226710A4667849F00F5D8F2A35695165092AF4FC0F  
+```
+ed2k://|file|zh-cn_windows_server_2025_x64_dvd_1d93dd12.iso|6222254080|ADB825759C4D4B8CAADCE106D9C50A73|/
 ```
 
 ### Windows 11

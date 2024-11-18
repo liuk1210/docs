@@ -1,3 +1,5 @@
+## OpenJDK
+https://jdk.java.net/archive/
 ## 数组转Map
 ~~~
 Map<String,T> map= list.stream().collect(Collectors.toMap(T::getId, Function.identity(), (v1, v2) -> v2));

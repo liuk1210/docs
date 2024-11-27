@@ -40,3 +40,28 @@ WHERE A.OWNER = B.OWNER
   AND A.OWNER = 'ORACLE用户名'
 ORDER BY A.TABLE_NAME
 ~~~
+
+## Docker Oracle初始化并创建用户
+~~~
+docker run -d -p 1521:1521 --name oracle23c-ai container-registry.oracle.com/database/free
+docker exec -it oracle23c-ai bash
+mkdir /home/oracle/dump
+sqlplus / as sysdba
+CREATE DIRECTORY dic_expdp AS '/home/oracle/dump';
+create user c##user identified by 1;
+GRANT dba TO c##user;
+exit
+~~~
+## 数据泵导入
+将本地文件复制到容器
+~~~
+docker cp xxx.dmp oracle23c-ai:/home/oracle/dump/import.dmp
+~~~
+执行`docker exec -it oracle23c-ai bash`进入容器后，执行导入命令
+~~~
+impdp c##user/1 directory=dic_expdp dumpfile=import.dmp remap_schema=原用户名:c##user remap_tablespace=原表空间名:USERS,原临时表空间名:TEMP logfile=import.log
+~~~
+## 数据泵导出
+~~~
+expdp c##user/1 directory=dic_expdp dumpfile=export.dmp schemas=c##user logfile=export.log
+~~~

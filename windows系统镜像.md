@@ -37,6 +37,26 @@ SHA256：A03EA7BE522AB390F7B18139A45200EA6DA9BBA5BC13415A758ED4D1F9806A37
 magnet:?xt=urn:btih:6b138ae45fb9bcdb152d8425ad5e7c557a7820a1&dn=zh-cn_windows_10_consumer_editions_version_22h2_updated_march_2025_x86_dvd_fefab0a7.iso&xl=5048008704
 ```
 
+#### Windows 10 (business editions), version 22H2 (updated March 2025) (x64) - DVD (Chinese-Simplified)  
+文件：zh-cn_windows_10_business_editions_version_22h2_updated_march_2025_x64_dvd_853aeb12.iso  
+大小：6.53GB  
+MD5：50C0FCADDF2765ADACB35C01944D4E1C  
+SHA1：926CBA7B6B617A4CF6F042B6DE023FC7E7033895  
+SHA256：C4C870CCAACBD6E0779790836353F54293CEF906F8A93BFCDCAD4D9E62177EA2  
+```
+magnet:?xt=urn:btih:8c4db6dd7ef32332c1720095abd7dde3c84ea6cf&dn=zh-cn_windows_10_business_editions_version_22h2_updated_march_2025_x64_dvd_853aeb12.iso&xl=7006351360
+```
+
+#### Windows 10 (business editions), version 22H2 (updated March 2025) (x86) - DVD (Chinese-Simplified)  
+文件：zh-cn_windows_10_business_editions_version_22h2_updated_march_2025_x86_dvd_fd65b073.iso  
+大小：4.61GB  
+MD5：D9D3940ACF29C24BF05162906BB642DE  
+SHA1：CD42F017BFCF6944C5DC51E05C5B0A733220E78C  
+SHA256：62AC771FE736F477B1261BDFF1B85BE6C808004AFB54F34FA6B47BB173F22872  
+```
+magnet:?xt=urn:btih:19b7938c2754f76f1476182d4c6f8433f3545dd3&dn=zh-cn_windows_10_business_editions_version_22h2_updated_march_2025_x86_dvd_fd65b073.iso&xl=4954793984
+```
+
 #### Windows 10 Enterprise LTSC 2021 (x64) - DVD (Chinese-Simplified)
 文件：SW_DVD9_WIN_ENT_LTSC_2021_64BIT_ChnSimp_MLF_X22-84402.ISO  
 大小：4.7GB  
@@ -44,8 +64,9 @@ MD5：2579B3865C0591EAD3A2B45AF3CABEEE
 SHA1：C19D7DAFBAFEB26C36E31D97C465E87C7A6E8A4C  
 SHA256：C117C5DDBC51F315C739F9321D4907FA50090BA7B48E7E9A2D173D49EF2F73A3
 ```
-ed2k://|file|SW_DVD9_WIN_ENT_LTSC_2021_64BIT_ChnSimp_MLF_X22-84402.ISO|5044211712|1555B7DCA052B5958EE68DB58A42408D|/
+magnet:?xt=urn:btih:366ADAA52FB3639B17D73718DD5F9E3EE9477B40&dn=SW_DVD9_WIN_ENT_LTSC_2021_64BIT_ChnSimp_MLF_X22-84402.ISO&xl=5044211712
 ```
+
 ### Windows Server
 #### Windows Server 2022 (updated Sep 2024) (x64) - DVD (Chinese-Simplified)
 文件：zh-cn_windows_server_2022_updated_sep_2024_x64_dvd_cab4e960.iso  

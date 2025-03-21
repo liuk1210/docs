@@ -17,24 +17,24 @@ ed2k://|file|cn_windows_7_ultimate_with_sp1_x64_dvd_u_677408.iso|3420557312|B585
 ~~~
 
 ### Windows 10
-#### Windows 10 (business editions), version 22H2 (updated Sep 2024) (x64) - DVD (Chinese-Simplified)
-文件：zh-cn_windows_10_business_editions_version_22h2_updated_sep_2024_x64_dvd_1be03898.iso  
-大小：6.5GB  
-MD5：DC015F497788A4D978EF038C6A4A032F  
-SHA1：9F77A095E42281864A9616A44624B1D10CF2126A  
-SHA256：AAFC859E1A00CB3DC574026C6DF9AB57959EE618AC7BDE9D8B18077BE6B41E8E
+#### Windows 10 (consumer editions), version 22H2 (updated March 2025) (x64) - DVD (Chinese-Simplified)  
+文件：zh-cn_windows_10_consumer_editions_version_22h2_updated_march_2025_x64_dvd_fefab0a7.iso  
+大小：6.69GB  
+MD5：ADA669738C892C2693CE4570E4780697  
+SHA1：F3123799D16C37C15714A4A2807DD63B6DBE1FB4  
+SHA256：28307D66B6F95D208E152C4856FECBBD02BC518F9C9C2A34C6474978D368BAD9  
 ~~~
-ed2k://|file|zh-cn_windows_10_business_editions_version_22h2_updated_sep_2024_x64_dvd_1be03898.iso|6979913728|3A3FFE4A6C0478EBDF766793662B1EC9|/
+magnet:?xt=urn:btih:d3b4a16ae248e2fd87b67bc95f4ba0806a60e6c3&dn=zh-cn_windows_10_consumer_editions_version_22h2_updated_march_2025_x64_dvd_fefab0a7.iso&xl=7188094976
 ~~~
 
-#### Windows 10 (consumer editions), version 22H2 (updated Sep 2024) (x64) - DVD (Chinese-Simplified)
-文件：zh-cn_windows_10_consumer_editions_version_22h2_updated_sep_2024_x64_dvd_377ddb19.iso  
-大小：6.66GB  
-MD5：F10761CE4C18A944F6226D0C7AD8D878  
-SHA1：ED1812398BC49FBBCF7B00C87DC7EFD3D5446C65  
-SHA256：01F93273B850C401986B6E6BA807779DD6470CE935FFD3198ECCE72163946F3F
+#### Windows 10 (consumer editions), version 22H2 (updated March 2025) (x86) - DVD (Chinese-Simplified)  
+文件：zh-cn_windows_10_consumer_editions_version_22h2_updated_march_2025_x86_dvd_fefab0a7.iso  
+大小：4.7GB  
+MD5：5F755979409913E0418DC8B4BCC72012  
+SHA1：253245E6026F2F47DE8BFE7F01AC6BECDD0FB610  
+SHA256：A03EA7BE522AB390F7B18139A45200EA6DA9BBA5BC13415A758ED4D1F9806A37  
 ```
-ed2k://|file|zh-cn_windows_10_consumer_editions_version_22h2_updated_sep_2024_x64_dvd_377ddb19.iso|7155963904|0EBF12D59A9EFAC793FA9C61D9B1B270|/
+magnet:?xt=urn:btih:6b138ae45fb9bcdb152d8425ad5e7c557a7820a1&dn=zh-cn_windows_10_consumer_editions_version_22h2_updated_march_2025_x86_dvd_fefab0a7.iso&xl=5048008704
 ```
 
 #### Windows 10 Enterprise LTSC 2021 (x64) - DVD (Chinese-Simplified)

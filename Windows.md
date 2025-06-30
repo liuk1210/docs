@@ -2,7 +2,7 @@
 ~~~
 dism /online /export-driver /destination:D:\Drivers
 ~~~
-## 物理硬盘-命令行安装Win11
+## 命令行安装Win11
 ### 1.diskpart创建gpt分区
 ~~~
 list disk     #查看硬盘列表
@@ -32,7 +32,6 @@ Shift+F10 打开命令行
 ~~~
 ## 系统修复
 ### Windows系统问题通用修复命令
-依次输入：
 ~~~
 DISM.exe /Online /Cleanup-image /CheckHealth
 ~~~
@@ -45,7 +44,7 @@ DISM.exe /Online /Cleanup-image /Restorehealth
 ~~~
 sfc /scannow
 ~~~
-## robocopy文件夹备份
+## 文件夹备份
 ~~~
 robocopy d:\xxx u:\xxx /MIR
 ~~~

@@ -30,6 +30,21 @@ bcdboot d:\windows /s f:
 Shift+F10 打开命令行
 输入以下命令：OOBE\BYPASSNRO
 ~~~
+## 系统修复
+### Windows系统问题通用修复命令
+依次输入：
+~~~
+DISM.exe /Online /Cleanup-image /CheckHealth
+~~~
+~~~
+DISM.exe /Online /Cleanup-image /Scanhealth
+~~~
+~~~
+DISM.exe /Online /Cleanup-image /Restorehealth
+~~~
+~~~
+sfc /scannow
+~~~
 ## vhdx虚拟硬盘-命令行安装Win11
 ### 创建vhdx虚拟硬盘
 ~~~

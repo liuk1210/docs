@@ -44,6 +44,12 @@ DISM.exe /Online /Cleanup-image /Restorehealth
 ~~~
 sfc /scannow
 ~~~
+## 系统保留存储关闭
+- 以管理员身份打开命令提示符（可以在开始菜单搜索“cmd”，然后右击选择“以管理员身份运行”）。
+- 输入以下命令并执行：
+~~~
+DISM /Online /Set-ReservedStorageState /State:Disabled
+~~~
 ## 文件夹备份
 ~~~
 robocopy d:\xxx u:\xxx /MIR

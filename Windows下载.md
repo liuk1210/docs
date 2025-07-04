@@ -1,5 +1,3 @@
-## 🌐 Windows系统下载
-
 ---
 ### 💎 Windows XP
 Windows XP Professional with Service Pack 3 (x86) - CD (Chinese-Simplified)

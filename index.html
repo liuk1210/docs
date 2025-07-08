@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown 预览器</title>
+    <title>📚 资源中心</title>
 
     <!-- GitHub Markdown 样式 -->
     <link rel="stylesheet" href="public/github-markdown.min.css">
@@ -177,7 +177,7 @@
         const titleElement = document.getElementById("markdown-title");
 
         // 设置标题
-        titleElement.textContent = filename;
+        titleElement.textContent = filename.split(".")[0];
 
         // 显示加载提示
         output.innerHTML = "<p>加载中...</p>";

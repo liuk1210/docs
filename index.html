@@ -12,21 +12,26 @@
     <script src="public/marked.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f9;
             margin: 0;
             padding: 0;
         }
 
         blockquote{
-            background: #c8e2ff;
+            background: #deecff;
             padding: 10px !important;
+        }
+
+        pre{
+            background: #deecff !important;
         }
 
         .container {
             width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            margin-bottom: 50px;
+            max-width: 1000px;
+            margin: auto;
+            padding: 0px 20px 30px 20px;
         }
 
         .preview-header {
@@ -49,13 +54,13 @@
         }
 
         .markdown-body {
+            background-color: #f5f5f9;
             line-height: 1.6;
             width: 100%;
             padding: 0;
             margin: 0;
         }
 
-        /* Markdown 渲染样式（简化版） */
         .markdown-body h1, .markdown-body h2, .markdown-body h3 {
             color: #2c3e50;
         }
@@ -70,34 +75,89 @@
             overflow-x: auto;
         }
 
+        h2.title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
         .file-list {
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
         }
 
-        .file-list button {
-            margin: 5px;
-            padding: 8px 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .file-item {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            text-align: center;
+            padding: 24px;
+            transition: all 0.3s ease-in-out;
         }
 
-        .file-list button:hover {
-            background-color: #0056b3;
+        .file-item:hover {
+            background-color: #f0f0fa;
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .label {
+            font-size: 1.1rem;
+            color: #333;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+
+        .file-list a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- 文件列表 -->
-    <div id="file-list" class="file-list">
-        <h2>文件列表</h2>
-        <li><a href="#" onclick="loadMarkdown('Windows下载.md')">Windows下载.md</a></li>
-        <li><a href="#" onclick="loadMarkdown('常用网站.md')">常用网站.md</a></li>
+    <div id="file-list">
+        <h2 class="title">📚 资源中心</h2>
+        <div class="file-list">
+            <div class="file-item"><a href="#" onclick="loadMarkdown('常用网站.md')"><div class="icon">🌐</div><div class="label">常用网站</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Windows.md')"><div class="icon">🖥️</div><div class="label">Windows</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Windows下载.md')"><div class="icon">💾</div><div class="label">Windows下载</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Bat.md')"><div class="icon">⚙️</div><div class="label">Bat脚本</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('CentOS.md')"><div class="icon">🐧</div><div class="label">CentOS</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Docker.md')"><div class="icon">🐋</div><div class="label">Docker</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Java.md')"><div class="icon">☕</div><div class="label">Java</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('K8s.md')"><div class="icon">⎈</div><div class="label">Kubernetes</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Maven.md')"><div class="icon">📦</div><div class="label">Maven</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Mysql.md')"><div class="icon">🛢️</div><div class="label">MySQL</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Nginx.md')"><div class="icon">🔌</div><div class="label">Nginx</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Oracle.md')"><div class="icon">🗄️</div><div class="label">Oracle</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Redis.md')"><div class="icon">🔴</div><div class="label">Redis</div></a></div>
+            <div class="file-item"><a href="#" onclick="loadMarkdown('Tomcat.md')"><div class="icon">🛠️</div><div class="label">Tomcat</div></a></div>
+            <div class="file-item"><a href="/Totp.html"><div class="icon">🔐</div><div class="label">TOTP</div></a></div>
+        </div>
+        <div class="footer">
+            &copy; 2025 资源中心 | 仅供个人使用
+        </div>
     </div>
-
     <!-- Markdown 预览区域 -->
     <div id="markdown-preview" style="display: none;">
         <!-- 返回按钮 + 标题 -->

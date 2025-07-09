@@ -152,6 +152,25 @@
             font-size: 0.9rem;
             color: #aaa;
         }
+
+        /* 返回首页按钮样式 */
+        #backToHomeBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -173,7 +192,7 @@
             <div class="file-item"><a href="#" onclick="loadMarkdown('Oracle.md')"><div class="icon">🗄️</div><div class="label">Oracle</div></a></div>
             <div class="file-item"><a href="#" onclick="loadMarkdown('Redis.md')"><div class="icon">🔴</div><div class="label">Redis</div></a></div>
             <div class="file-item"><a href="#" onclick="loadMarkdown('Tomcat.md')"><div class="icon">🛠️</div><div class="label">Tomcat</div></a></div>
-            <div class="file-item"><a href="/Totp.html"><div class="icon">🔐</div><div class="label">TOTP</div></a></div>
+            <div class="file-item"><a href="/docs/Totp.html"><div class="icon">🔐</div><div class="label">TOTP</div></a></div>
         </div>
         <div class="footer">
             &copy; 2025 资源中心 | 仅供个人使用
@@ -188,9 +207,14 @@
         </div>
         <div id="markdown-output" class="markdown-body"></div>
     </div>
+
+    <!-- 返回首页按钮 -->
+    <button id="backToHomeBtn" onclick="goBack()">🏠</button>
 </div>
 
 <script>
+    let scrollHandler = null;
+
     // 加载指定的 Markdown 文件
     function loadMarkdown(filename) {
         const output = document.getElementById("markdown-output");
@@ -218,6 +242,9 @@
             .then(text => {
                 // 使用 marked.js 转换 Markdown
                 output.innerHTML = marked.parse(text);
+
+                // 启动滚动监听
+                setupBackToTopButton();
             })
             .catch(error => {
                 output.innerHTML = `<p style="color: red;">错误：${error.message}</p>`;
@@ -228,6 +255,31 @@
     function goBack() {
         document.getElementById("markdown-preview").style.display = "none";
         document.getElementById("file-list").style.display = "block";
+
+        // 隐藏按钮并移除滚动监听
+        const btn = document.getElementById("backToHomeBtn");
+        btn.style.display = "none";
+
+        if (scrollHandler) {
+            window.removeEventListener("scroll", scrollHandler);
+            scrollHandler = null;
+        }
+    }
+
+    // 设置返回首页按钮逻辑
+    function setupBackToTopButton() {
+        const btn = document.getElementById("backToHomeBtn");
+        btn.style.display = "none"; // 默认不显示
+
+        scrollHandler = () => {
+            if (window.scrollY > 300) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        window.addEventListener("scroll", scrollHandler);
     }
 </script>
 </body>

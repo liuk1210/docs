@@ -1,8 +1,8 @@
-## 本地jar包导入maven仓库
+### 📦 本地jar包导入maven仓库
 ~~~
 mvn install:install-file -Dfile=*.jar -DgroupId= -DartifactId= -Dversion= -Dpackaging=jar -DgeneratePom=true
 ~~~
-## 生成maven本地jar包导入语句
+### 🔧 生成maven本地jar包导入语句
 ~~~
 public class Maven {
     public static void main(String[] args) {

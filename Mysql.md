@@ -1,4 +1,4 @@
-### mysql8.0以下版本实现从分组数据中选取每组中count_最大的记录
+### 🛢️ mysql8.0以下版本实现从分组数据中选取每组中count_最大的记录
 ~~~
 SELECT b.*, b.count_
 FROM (SELECT t.*,

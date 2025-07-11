@@ -1,10 +1,10 @@
 ---
-## 文件头UTF8
+### 📄 文件头UTF8
 ~~~
 @echo off
 chcp 65001
 ~~~
-## 使用管理员权限运行
+### 💼 使用管理员权限运行
 ~~~
 NET SESSION >nul 2>&1
 if errorlevel 1 (
@@ -15,7 +15,7 @@ if errorlevel 1 (
 echo 请按enter键开始配置。
 pause
 ~~~
-## 添加Path环境变量
+### ➕ 添加Path环境变量
 ~~~
 :addEnvPath
     for /f "tokens=2*" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path ^| findstr /i "Path"') do (
@@ -34,7 +34,7 @@ pause
 ~~~
 call :addEnvPath D:\Workspaces\Programs\jdk8\bin
 ~~~
-## 添加环境变量
+### 🆕 添加环境变量
 ~~~
 :addEnv
     set "varName=%~1"
@@ -52,7 +52,7 @@ call :addEnvPath D:\Workspaces\Programs\jdk8\bin
 ~~~
 call :addEnv "JAVA_HOME" "D:\Workspaces\Programs\jdk8"
 ~~~
-## 添加host
+### 🏷️ 添加host
 ~~~
 set "hostsPath=C:\Windows\System32\drivers\etc\hosts"
 :addHosts

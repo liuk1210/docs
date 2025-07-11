@@ -47,7 +47,12 @@ WHERE A.OWNER = B.OWNER
 ORDER BY A.TABLE_NAME
 ~~~
 
-### 🐳 Docker Oracle 初始化并创建用户
+### 🐳 Docker Oracle 数据泵导入导出（bat命令版）
+下载 [InitDockerOracleFromDmp.bat](bat/InitDockerOracleFromDmp.bat) ，修改需要创建的用户名、密码、dmp文件名、remap，
+然后本地执行即可导入到docker容器创建的oracle中
+
+### 🐳 Docker Oracle 数据泵导入导出
+1. 初始化并创建用户
 ~~~
 docker run -d -p 1521:1521 --name oracle23c-ai container-registry.oracle.com/database/free
 docker exec -it oracle23c-ai bash
@@ -59,7 +64,7 @@ GRANT dba TO c##user;
 exit
 ~~~
 
-### 📥 数据泵导入
+2. 数据泵导入
 将本地文件复制到容器：
 ~~~
 docker cp xxx.dmp oracle23c-ai:/home/oracle/dump/import.dmp
@@ -69,7 +74,7 @@ docker cp xxx.dmp oracle23c-ai:/home/oracle/dump/import.dmp
 impdp c##user/1 directory=dic_expdp dumpfile=import.dmp remap_schema=原用户名:c##user remap_tablespace=原表空间名:USERS,原临时表空间名:TEMP logfile=import.log
 ~~~
 
-### 📤 数据泵导出
+3. 数据泵导出
 ~~~
 expdp c##user/1 directory=dic_expdp dumpfile=export.dmp schemas=c##user logfile=export.log
 ~~~

@@ -1,9 +1,10 @@
-## ssl证书生成
+---
+### ssl证书生成
 ~~~
 openssl genrsa -out rsa_private.key 2048
 openssl req -new -x509 -days 36500 -key rsa_private.key -out cert.crt
 ~~~
-## nginx安装
+### nginx安装
 ~~~
 yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel
 wget https://nginx.org/download/nginx-1.22.1.tar.gz
@@ -14,7 +15,7 @@ make
 make install
 ./usr/local/nginx/sbin/nginx
 ~~~
-## nginx非443端口ssl配置
+### nginx非443端口ssl配置
 ~~~
 server {
         listen 1443 ssl; 
@@ -39,7 +40,7 @@ server {
 	}
 }
 ~~~
-## nginx代理FnOS配置文件
+### nginx代理FnOS配置文件
 ~~~
 
 #user  nobody;

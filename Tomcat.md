@@ -1,11 +1,11 @@
-## win11本地tomcat运行乱码处理
+### win11本地tomcat运行乱码处理
 1. 卸载win11自带的终端应用
 2. 修改注册表
 ~~~
     在HKEY_CURRENT_USER → Console下新增一个Tomcat项
     新建DWORD值：CodePage，十进制值：65001
 ~~~
-## 使用本地tomcat作为idea开发运行环境
+### 使用本地tomcat作为idea开发运行环境
 1. conf\server.xml中的Host节点下添加Context
 ~~~
     <Context docBase="D:\webapp" path="/path"/>

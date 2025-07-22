@@ -12,6 +12,26 @@ RUN yum makecache
 passwd 
 ```
 
+### 🔒 修改密码
+```bash
+# centos安装
+sudo yum -y install nvme-cli
+
+nvme list
+
+# 查看错误日志
+sudo nvme error-log /dev/nvme0n1
+
+# 查看 SMART 信息
+sudo nvme smart-log /dev/nvme0n1
+
+# 查看健康状态（百分比）
+sudo nvme smart-log /dev/nvme0n1 | grep -i "percentage"
+
+# ubuntu安装
+# sudo apt install nvme-cli
+```
+
 ### 👤 允许root密码登录
 1. 修改ssh配置
 ```bash

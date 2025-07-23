@@ -60,3 +60,13 @@ DISM /Online /Set-ReservedStorageState /State:Disabled
 ~~~
 robocopy d:\xxx u:\xxx /MIR
 ~~~
+
+### 📂 创建Linux安装盘启动项
+~~~
+bcdedit /create /d "Ubuntu Install" /application bootsector
+bcdedit /set {YOUR-GUID} device partition=E:
+bcdedit /set {YOUR-GUID} path \EFI\ubuntu\grubx64.efi
+bcdedit /displayorder {YOUR-GUID} /addlast
+# 删除启动项
+bcdedit /delete {YOUR-GUID}
+~~~

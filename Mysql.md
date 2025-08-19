@@ -12,3 +12,20 @@ FROM (SELECT t.*,
 where b.row_num = 1
 order by b.count_ desc
 ~~~
+#### 虚拟列的方式解决存在逻辑删除字段的唯一索引问题
+~~~
+-- 添加生成列
+ALTER TABLE table_name
+ADD COLUMN uk_table_name VARCHAR(256)
+AS (
+    CASE 
+        WHEN del_flag_ = 0 
+        THEN CONCAT(field_01_, '|', field_02_, '|', field_03_) 
+        ELSE NULL 
+    END
+) STORED;
+
+-- 创建唯一索引
+CREATE UNIQUE INDEX uk_table_name 
+ON user_info (uk_table_name);
+~~~

@@ -2,9 +2,9 @@
 
 ### 🛠 修改安装源
 ```bash
-RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-RUN yum clean all
-RUN yum makecache
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all
+yum makecache
 ```
 
 ### 🔒 修改密码

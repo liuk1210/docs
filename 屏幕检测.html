@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>屏幕检测</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+            overflow: hidden;
+        }
+
+        #menu {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90vw;
+        }
+
+        .test-btn {
+            padding: 8px 12px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .test-btn:hover {
+            background: #555;
+        }
+
+        #screen {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: black;
+        }
+
+        #screen canvas, #screen img, #screen div {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        #refresh-rate-display {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            color: #0f0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        #refresh-rate-display small {
+            display: block;
+            font-size: 20px;
+            margin-top: 10px;
+            color: #ccc;
+        }
+
+        #moving-box {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #ff0;
+            border: 2px solid #000;
+            box-shadow: 0 0 10px #ff0;
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <button class="test-btn" data-test="solid">纯色测试</button>
+    <button class="test-btn" data-test="leak">漏光测试</button>
+    <button class="test-btn" data-test="refresh">刷新率测试</button> <!-- 新增 -->
+</div>
+
+<div id="screen"></div>
+
+<script>
+    const menu = document.getElementById('menu');
+    const screen = document.getElementById('screen');
+
+    let currentTest = null;
+    let solidIndex = 0;
+    const solidColors = ['#FF0000', '#00FF00', '#0000FF', '#FFFFFF', '#000000', '#00FFFF', '#FF00FF', '#FFFF00'];
+
+    // 刷新率测试相关变量
+    let rafId = null;
+    let frameCount = 0;
+    let lastTime = performance.now();
+    let refreshRates = [];
+    let isRunning = true;
+
+    const tests = {
+        solid: () => {
+            screen.style.background = solidColors[solidIndex % solidColors.length];
+            screen.innerHTML = '';
+            solidIndex++;
+        },
+        leak: () => {
+            screen.style.background = '#000000';
+            screen.innerHTML = '';
+        },
+        refresh: () => {
+            // 清空屏幕
+            screen.innerHTML = '';
+            screen.style.background = '#000';
+
+            // 创建显示区域
+            const display = document.createElement('div');
+            display.id = 'refresh-rate-display';
+            display.innerHTML = '检测中...<br><small>请保持页面可见</small>';
+            screen.appendChild(display);
+
+            // 创建移动方块（辅助视觉）
+            const box = document.createElement('div');
+            box.id = 'moving-box';
+            screen.appendChild(box);
+
+            let posX = 0;
+            let direction = 1;
+            const speed = 2;
+
+            // 重置状态
+            frameCount = 0;
+            lastTime = performance.now();
+            refreshRates = [];
+            isRunning = true;
+
+            function animate(timestamp) {
+                if (!isRunning) return;
+
+                frameCount++;
+                const elapsed = timestamp - lastTime;
+                if (elapsed >= 1000) {
+                    const currentRate = Math.round((frameCount * 1000) / elapsed);
+                    refreshRates.push(currentRate);
+                    if (refreshRates.length > 5) refreshRates.shift();
+
+                    const avg = Math.round(refreshRates.reduce((a, b) => a + b, 0) / refreshRates.length);
+                    display.innerHTML = `${currentRate} Hz<br><small>平均: ${avg} Hz (最近5秒)</small>`;
+
+                    frameCount = 0;
+                    lastTime = timestamp;
+                }
+
+                // 移动方块
+                const maxWidth = window.innerWidth - 80;
+                posX += speed * direction;
+                if (posX >= maxWidth || posX <= 0) direction *= -1;
+                box.style.left = posX + 'px';
+                box.style.top = (window.innerHeight / 2 - 40) + 'px';
+
+                rafId = requestAnimationFrame(animate);
+            }
+
+            rafId = requestAnimationFrame(animate);
+        }
+    };
+
+    function enterFullscreen() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    }
+
+    function exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        menu.classList.remove('hidden');
+        // 停止刷新率动画
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+        isRunning = false;
+    }
+
+    function startTest(testName) {
+        currentTest = testName;
+        tests[testName]();
+        menu.classList.add('hidden');
+        enterFullscreen();
+    }
+
+    // 绑定菜单按钮
+    document.querySelectorAll('.test-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            startTest(btn.dataset.test);
+        });
+    });
+
+    // 左键点击切换（仅纯色有效）
+    screen.addEventListener('click', () => {
+        if (currentTest === 'solid') {
+            tests.solid();
+        } else if (currentTest === 'refresh') {
+            // 可选：点击暂停/继续（此处暂不实现，避免干扰测试）
+            // isRunning = !isRunning;
+        }
+    });
+
+    // ESC 显示菜单
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            currentTest = null;
+            exitFullscreen();
+        }
+    });
+
+    // 响应全屏变化
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(event => {
+        document.addEventListener(event, () => {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && currentTest) {
+                menu.classList.remove('hidden');
+            }
+        });
+    });
+</script>
+</body>
+</html>

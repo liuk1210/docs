@@ -21,6 +21,16 @@ format quick
 assign letter="D"
 ~~~
 
+查看磁盘GUID
+~~~
+Get-Disk | Select DiskNumber,Guid
+~~~
+查看分区GUID
+~~~
+Get-Disk -Number 0 | Get-Partition | Select DiskNumber,PartitionNumber,Guid,Size
+~~~
+
+
 2. 使用DISM安装Win11
 ~~~
 dism /apply-image /imagefile:install.wim /index:1 /applydir:d:\

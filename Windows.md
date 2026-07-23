@@ -29,6 +29,12 @@ Get-Disk | Select DiskNumber,Guid
 ~~~
 Get-Disk -Number 0 | Get-Partition | Select DiskNumber,PartitionNumber,Guid,Size
 ~~~
+删除分区
+~~~
+select disk 1
+select par 1
+del par
+~~~
 
 
 2. 使用DISM安装Win11
